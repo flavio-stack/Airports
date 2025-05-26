@@ -39,7 +39,11 @@ import org.springframework.stereotype.Service;
                    .map(x -> new AirportMinDTO(x)).toList();
            
            return resultDTO;
-                  
+           }
+           
+           public Airport findByIataCode(String iatacode) {
+               Airport result = airportRepository.findByIataCode(iatacode);
+               return result;
            }
 }
         
