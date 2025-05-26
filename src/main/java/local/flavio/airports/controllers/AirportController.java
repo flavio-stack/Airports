@@ -5,6 +5,7 @@
 package local.flavio.airports.controllers;
 
 import java.util.List;
+import local.flavio.airports.DTO.AirportMinDTO;
 import local.flavio.airports.entities.Airport;
 import local.flavio.airports.service.AirportService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,16 @@ public class AirportController {
                 // ok devolve 200
                 return ResponseEntity.ok(result);
             }
-            
         }
-    }
+            @GetMapping("/country/{countryName}")
+        public ResponseEntity<List<AirportMinDTO>> findCountryIgnoreCase(@PathVariable String countryName){
+            
+            List<AirportMinDTO> result = airportService.findByCountry(countryName);
+            if (result.isEmpty()) {
+                return ResponseEntity.notFound().build();
+        } else {
+                return ResponseEntity.ok(result);
+            }
+          }
+     }
+
