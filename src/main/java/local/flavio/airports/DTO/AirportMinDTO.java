@@ -4,7 +4,7 @@
  */
 package local.flavio.airports.DTO;
 
-import java.security.PrivateKey;
+//import java.security.PrivateKey;
 import local.flavio.airports.entities.Airport;
 
 /**

@@ -6,7 +6,9 @@ package local.flavio.airports.service;
 
 import java.util.List;
 import local.flavio.airports.DTO.AirportMinDTO;
+import local.flavio.airports.DTO.AirportNearMeDTO;
 import local.flavio.airports.entities.Airport;
+import local.flavio.airports.projections.AirportNearMeProjection;
 import local.flavio.airports.repositores.AirportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,5 +47,12 @@ import org.springframework.stereotype.Service;
                Airport result = airportRepository.findByIataCode(iatacode);
                return result;
            }
+            public List<AirportNearMeDTO> findNearMe(double latitude, double longitude) {
+           List<AirportNearMeProjection> resultNearAirports = airportRepository.findNearMe(latitude, longitude);
+           
+           List<AirportNearMeDTO> resultDTO = resultNearAirports.stream()
+                   .map(x -> new AirportNearMeDTO(x)).toList();
+           
+           return resultDTO; 
 }
-        
+    }
